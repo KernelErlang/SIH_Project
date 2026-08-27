@@ -1,2 +1,2 @@
 # SIH_Project
-To build an AI app which detects fraudulent id and documents 
+To build a City-Wide AI Engine for Multi-Camera ANPR Trajectory Tracking and Urban Traffic Analytics
