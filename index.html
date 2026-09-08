@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CityVision AI | ANPR Traffic Intelligence</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-eye"></i>
+            </div>
+
+            <div>
+                <h2>CityVision</h2>
+                <span>AI TRAFFIC INTELLIGENCE</span>
+            </div>
+        </div>
+
+        <div class="menu-title">MAIN MENU</div>
+
+        <nav>
+
+            <a href="#" class="menu-item active" data-page="dashboard">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#" class="menu-item" data-page="cameras">
+                <i class="fa-solid fa-video"></i>
+                <span>Camera Network</span>
+            </a>
+
+            <a href="#" class="menu-item" data-page="trajectory">
+                <i class="fa-solid fa-route"></i>
+                <span>Trajectory Tracking</span>
+            </a>
+
+            <a href="#" class="menu-item" data-page="analytics">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Traffic Analytics</span>
+            </a>
+
+            <a href="#" class="menu-item" data-page="alerts">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts</span>
+                <b class="alert-count">5</b>
+            </a>
+
+        </nav>
+
+        <div class="menu-title">SYSTEM</div>
+
+        <nav>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-database"></i>
+                <span>ANPR Records</span>
+            </a>
+
+            <a href="#" class="menu-item">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System Operational</strong>
+                    <small>All services running</small>
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="page-heading">
+
+                <button class="mobile-menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h1 id="pageTitle">City Traffic Dashboard</h1>
+                    <p id="pageSubtitle">
+                        Real-time AI-powered traffic intelligence
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <div class="live-status">
+                    <span></span>
+                    LIVE
+                </div>
+
+                <div class="time" id="clock">
+                    00:00:00
+                </div>
+
+                <button class="icon-button">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="profile">
+
+                    <div class="avatar">
+                        AD
+                    </div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Traffic Control</small>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD PAGE -->
+        <section class="page active-page" id="dashboard">
+
+            <!-- KPI CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Active Cameras</span>
+                        <h2>184</h2>
+                        <small class="positive">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            98.4% online
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Vehicles Detected</span>
+                        <h2 id="vehicleCount">24,681</h2>
+                        <small class="positive">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            12.6% today
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Average Speed</span>
+                        <h2>38.6 <small>km/h</small></h2>
+                        <small class="negative">
+                            <i class="fa-solid fa-arrow-down"></i>
+                            4.2% from yesterday
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon red">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Active Alerts</span>
+                        <h2>05</h2>
+                        <small class="negative">
+                            Requires attention
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MAP + ALERTS -->
+
+            <div class="dashboard-grid">
+
+                <div class="panel map-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>City Traffic Network</h3>
+                            <p>Live traffic density & camera locations</p>
+                        </div>
+
+                        <div class="map-controls">
+
+                            <button class="map-btn active">
+                                <i class="fa-solid fa-layer-group"></i>
+                                Traffic
+                            </button>
+
+                            <button class="map-btn">
+                                Cameras
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="map">
+
+                        <div class="map-grid"></div>
+
+                        <!-- roads -->
+
+                        <div class="road road1"></div>
+                        <div class="road road2"></div>
+                        <div class="road road3"></div>
+                        <div class="road road4"></div>
+                        <div class="road road5"></div>
+
+                        <!-- traffic areas -->
+
+                        <div class="traffic-zone zone1"></div>
+                        <div class="traffic-zone zone2"></div>
+                        <div class="traffic-zone zone3"></div>
+
+
+                        <!-- camera markers -->
+
+                        <div class="camera-marker marker1">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+
+                        <div class="camera-marker marker2">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+
+                        <div class="camera-marker marker3">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+
+                        <div class="camera-marker marker4">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+
+
+                        <!-- vehicle markers -->
+
+                        <div class="vehicle vehicle1">
+                            <i class="fa-solid fa-car-side"></i>
+                        </div>
+
+                        <div class="vehicle vehicle2">
+                            <i class="fa-solid fa-car-side"></i>
+                        </div>
+
+                        <div class="vehicle vehicle3">
+                            <i class="fa-solid fa-car-side"></i>
+                        </div>
+
+
+                        <div class="map-label label1">
+                            CENTRAL DISTRICT
+                        </div>
+
+                        <div class="map-label label2">
+                            NORTH SECTOR
+                        </div>
+
+                        <div class="map-label label3">
+                            EAST CORRIDOR
+                        </div>
+
+
+                        <div class="map-legend">
+
+                            <div>
+                                <span class="legend-dot green"></span>
+                                Low
+                            </div>
+
+                            <div>
+                                <span class="legend-dot yellow"></span>
+                                Moderate
+                            </div>
+
+                            <div>
+                                <span class="legend-dot red"></span>
+                                Heavy
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ALERTS -->
+
+                <div class="panel alert-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Live Alerts</h3>
+                            <p>Recent system notifications</p>
+                        </div>
+
+                        <button class="view-all" onclick="showPage('alerts')">
+                            View all
+                        </button>
+
+                    </div>
+
+
+                    <div class="alerts-list">
+
+                        <div class="alert-item critical">
+
+                            <div class="alert-symbol">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+
+                            <div class="alert-content">
+                                <strong>Priority Vehicle Alert</strong>
+                                <span>Camera Node C-108</span>
+                                <small>2 min ago</small>
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </div>
+
+
+                        <div class="alert-item warning">
+
+                            <div class="alert-symbol">
+                                <i class="fa-solid fa-road"></i>
+                            </div>
+
+                            <div class="alert-content">
+                                <strong>Traffic Congestion</strong>
+                                <span>Central Corridor</span>
+                                <small>8 min ago</small>
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </div>
+
+
+                        <div class="alert-item info">
+
+                            <div class="alert-symbol">
+                                <i class="fa-solid fa-video"></i>
+                            </div>
+
+                            <div class="alert-content">
+                                <strong>Camera Offline</strong>
+                                <span>Node C-067</span>
+                                <small>14 min ago</small>
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </div>
+
+
+                        <div class="alert-item warning">
+
+                            <div class="alert-symbol">
+                                <i class="fa-solid fa-route"></i>
+                            </div>
+
+                            <div class="alert-content">
+                                <strong>Route Anomaly</strong>
+                                <span>East Sector</span>
+                                <small>21 min ago</small>
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANALYTICS -->
+
+            <div class="analytics-grid">
+
+                <div class="panel chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Traffic Flow</h3>
+                            <p>Vehicles detected over the last 24 hours</p>
+                        </div>
+
+                        <select>
+                            <option>Today</option>
+                            <option>Yesterday</option>
+                            <option>Last 7 days</option>
+                        </select>
+
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="trafficChart"></canvas>
+                    </div>
+
+                </div>
+
+
+                <div class="panel density-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Traffic Density</h3>
+                            <p>Current sector status</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="density-list">
+
+                        <div class="density-row">
+
+                            <div class="density-name">
+                                <span>Central District</span>
+                                <small>High traffic</small>
+                            </div>
+
+                            <div class="progress">
+                                <span style="width:88%"></span>
+                            </div>
+
+                            <strong>88%</strong>
+
+                        </div>
+
+
+                        <div class="density-row">
+
+                            <div class="density-name">
+                                <span>North Sector</span>
+                                <small>Moderate</small>
+                            </div>
+
+                            <div class="progress">
+                                <span style="width:61%"></span>
+                            </div>
+
+                            <strong>61%</strong>
+
+                        </div>
+
+
+                        <div class="density-row">
+
+                            <div class="density-name">
+                                <span>East Corridor</span>
+                                <small>Heavy</small>
+                            </div>
+
+                            <div class="progress">
+                                <span style="width:79%"></span>
+                            </div>
+
+                            <strong>79%</strong>
+
+                        </div>
+
+
+                        <div class="density-row">
+
+                            <div class="density-name">
+                                <span>West Sector</span>
+                                <small>Low</small>
+                            </div>
+
+                            <div class="progress">
+                                <span style="width:32%"></span>
+                            </div>
+
+                            <strong>32%</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CAMERA PAGE -->
+
+        <section class="page" id="cameras">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Camera Network</h2>
+                    <p>Monitor connected ANPR camera nodes</p>
+                </div>
+
+                <button class="primary-btn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Camera
+                </button>
+
+            </div>
+
+
+            <div class="camera-grid">
+
+                <div class="camera-card">
+
+                    <div class="camera-feed">
+                        <div class="feed-overlay">
+                            <span class="camera-live">
+                                <span></span> LIVE
+                            </span>
+
+                            <span>C-101</span>
+                        </div>
+
+                        <div class="fake-road">
+                            <div class="fake-car car-a"></div>
+                            <div class="fake-car car-b"></div>
+                        </div>
+
+                        <div class="ocr-box">
+                            ANPR ACTIVE
+                        </div>
+                    </div>
+
+                    <div class="camera-details">
+                        <div>
+                            <strong>Central Avenue</strong>
+                            <span>Central District</span>
+                        </div>
+
+                        <div class="online">
+                            ONLINE
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="camera-card">
+
+                    <div class="camera-feed">
+                        <div class="feed-overlay">
+                            <span class="camera-live">
+                                <span></span> LIVE
+                            </span>
+
+                            <span>C-108</span>
+                        </div>
+
+                        <div class="fake-road">
+                            <div class="fake-car car-c"></div>
+                            <div class="fake-car car-d"></div>
+                        </div>
+
+                        <div class="ocr-box">
+                            ANPR ACTIVE
+                        </div>
+                    </div>
+
+                    <div class="camera-details">
+                        <div>
+                            <strong>Airport Road</strong>
+                            <span>East Corridor</span>
+                        </div>
+
+                        <div class="online">
+                            ONLINE
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="camera-card">
+
+                    <div class="camera-feed offline-feed">
+
+                        <div class="feed-overlay">
+                            <span>C-067</span>
+                        </div>
+
+                        <div class="offline-message">
+                            <i class="fa-solid fa-video-slash"></i>
+                            <span>Camera Offline</span>
+                        </div>
+
+                    </div>
+
+                    <div class="camera-details">
+
+                        <div>
+                            <strong>North Junction</strong>
+                            <span>North Sector</span>
+                        </div>
+
+                        <div class="offline">
+                            OFFLINE
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRAJECTORY PAGE -->
+
+        <section class="page" id="trajectory">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Trajectory Tracking</h2>
+                    <p>Analyze a vehicle's simulated movement history</p>
+                </div>
+
+            </div>
+
+
+            <div class="search-panel panel">
+
+                <div class="search-title">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <div>
+                        <h3>Search Vehicle</h3>
+                        <p>Enter a demo plate identifier</p>
+                    </div>
+                </div>
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="plateInput"
+                        placeholder="e.g. DEMO-1024"
+                    >
+
+                    <button onclick="searchVehicle()">
+                        <i class="fa-solid fa-route"></i>
+                        Track
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="trajectory-result panel" id="trajectoryResult">
+
+                <div class="vehicle-summary">
+
+                    <div class="plate-display">
+                        DEMO-1024
+                    </div>
+
+                    <div>
+                        <h3>Vehicle Trajectory</h3>
+                        <p>Demo data — synthetic vehicle record</p>
+                    </div>
+
+                    <div class="confidence">
+                        <span>OCR Confidence</span>
+                        <strong>96.8%</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="trajectory-content">
+
+                    <div class="trajectory-map">
+
+                        <div class="route-line"></div>
+
+                        <div class="route-point point-a">
+                            <span>A</span>
+                        </div>
+
+                        <div class="route-point point-b">
+                            <span>B</span>
+                        </div>
+
+                        <div class="route-point point-c">
+                            <span>C</span>
+                        </div>
+
+                        <div class="route-point point-d">
+                            <span>D</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline">
+
+                        <div class="timeline-item">
+
+                            <div class="timeline-dot"></div>
+
+                            <div>
+                                <strong>Central Avenue</strong>
+                                <span>Camera C-101</span>
+                                <small>08:42:17 AM</small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="timeline-item">
+
+                            <div class="timeline-dot"></div>
+
+                            <div>
+                                <strong>Market Junction</strong>
+                                <span>Camera C-116</span>
+                                <small>08:49:32 AM</small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="timeline-item">
+
+                            <div class="timeline-dot"></div>
+
+                            <div>
+                                <strong>East Corridor</strong>
+                                <span>Camera C-108</span>
+                                <small>09:02:48 AM</small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="timeline-item">
+
+                            <div class="timeline-dot"></div>
+
+                            <div>
+                                <strong>Airport Road</strong>
+                                <span>Camera C-123</span>
+                                <small>09:17:05 AM</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANALYTICS PAGE -->
+
+        <section class="page" id="analytics">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Traffic Analytics</h2>
+                    <p>City-wide traffic movement intelligence</p>
+                </div>
+
+                <button class="primary-btn">
+                    <i class="fa-solid fa-download"></i>
+                    Export Report
+                </button>
+
+            </div>
+
+
+            <div class="analytics-cards">
+
+                <div class="big-metric">
+                    <span>Total Flow</span>
+                    <strong>24,681</strong>
+                    <small>vehicles today</small>
+                </div>
+
+                <div class="big-metric">
+                    <span>Average Speed</span>
+                    <strong>38.6</strong>
+                    <small>km/h</small>
+                </div>
+
+                <div class="big-metric">
+                    <span>Congestion Index</span>
+                    <strong>64%</strong>
+                    <small>city average</small>
+                </div>
+
+                <div class="big-metric">
+                    <span>Camera Coverage</span>
+                    <strong>94%</strong>
+                    <small>network coverage</small>
+                </div>
+
+            </div>
+
+
+            <div class="panel large-chart">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Vehicle Flow Trend</h3>
+                        <p>Hourly city-wide movement</p>
+                    </div>
+
+                </div>
+
+                <div class="chart-container large">
+                    <canvas id="analyticsChart"></canvas>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ALERTS PAGE -->
+
+        <section class="page" id="alerts">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Alert Center</h2>
+                    <p>Monitor system and traffic events</p>
+                </div>
+
+            </div>
+
+
+            <div class="alert-center">
+
+                <div class="alert-big critical-alert">
+
+                    <div class="big-alert-icon">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <div>
+                        <span>HIGH PRIORITY</span>
+                        <h3>Priority Vehicle Alert</h3>
+                        <p>Camera C-108 detected a demo priority record.</p>
+                        <small>2 minutes ago</small>
+                    </div>
+
+                    <button>
+                        Review
+                    </button>
+
+                </div>
+
+
+                <div class="alert-big warning-alert">
+
+                    <div class="big-alert-icon">
+                        <i class="fa-solid fa-road"></i>
+                    </div>
+
+                    <div>
+                        <span>TRAFFIC</span>
+                        <h3>Congestion Detected</h3>
+                        <p>Central Corridor traffic density exceeds threshold.</p>
+                        <small>8 minutes ago</small>
+                    </div>
+
+                    <button>
+                        View Map
+                    </button>
+
+                </div>
+
+
+                <div class="alert-big info-alert">
+
+                    <div class="big-alert-icon">
+                        <i class="fa-solid fa-video-slash"></i>
+                    </div>
+
+                    <div>
+                        <span>SYSTEM</span>
+                        <h3>Camera Offline</h3>
+                        <p>Camera C-067 is currently unavailable.</p>
+                        <small>14 minutes ago</small>
+                    </div>
+
+                    <button>
+                        Diagnose
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <span>
+                © 2026 CityVision AI
+            </span>
+
+            <span>
+                AI Traffic Intelligence Platform
+            </span>
+
+            <span class="footer-status">
+                <i class="fa-solid fa-circle"></i>
+                All Systems Operational
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
