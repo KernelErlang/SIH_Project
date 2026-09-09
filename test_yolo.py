@@ -1,7 +1,6 @@
 from ultralytics import YOLO
 import cv2
-
-MODEL_PATH = "runs/detect/license_plate_detector/weights/best.pt"
+MODEL_PATH = r"C:\Users\HP\runs\detect\license_plate_detector-7\weights\best.pt"
 IMAGE_PATH = "test.jpg"
 
 model = YOLO(MODEL_PATH)
